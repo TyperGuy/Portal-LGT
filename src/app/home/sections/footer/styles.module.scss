@@ -1,0 +1,44 @@
+.container{
+    border-image:linear-gradient(90deg, #FF2A30, #0038AD ) 3;
+    border-width: 5px 0 0;
+    border-style: solid;
+    position: fixed;
+    z-index: 2;
+}
+.innerContainer{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
+}
+.navMenu{
+    display: flex;
+    margin-left: 50px;
+    gap:32px; 
+    height: 100%;
+    align-items:center;
+    p{
+        height: 100%;
+        border-bottom: 1.5px solid #fff;
+        transition: all ease-in-out .3s;
+        &:hover{
+            transform: scale(1.1);
+            border-bottom: 1.5px solid #000;
+        }
+    }
+}
+
+@media only screen and (min-width:1200px){
+    
+    .innerContainer{
+        width: 1200px;
+    }
+  
+  }
+
+
+  @media only screen and (max-width:940px){
+    .navMenu{
+      display: none;
+  } 
+  }  

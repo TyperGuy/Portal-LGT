@@ -1,0 +1,20 @@
+.seminarCover{
+    background-position: center;
+    background-size: cover;
+}
+.seminarMainContainer{
+
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    
+      }
+      
+      /* Tablets (geralmente paisagem) e Monitores de tamanhos médios */
+      @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+        /* Estilos específicos para telas entre 1024px e 1199px */
+      }
+      
+      /* Desktops e Monitores largos */
+      @media only screen and (max-width: 963px) {
+        flex-direction: column;
+      }
+}
