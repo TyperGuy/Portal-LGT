@@ -20,7 +20,7 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { PiCommandDuotone } from "react-icons/pi";
-import Styles from "./Styles.module.scss";
+import styles from "./styles.module.scss";
 
 export const Spotlite = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,11 +58,11 @@ export const Spotlite = () => {
         color="rgb(87, 87, 87)"
         transition=" all ease-in-out 0.4s"
         justify="flex-start"
-        className={Styles.box}
+        className={styles.box}
       >
-        <BiSearch className={Styles.icon} />
-        <span className={Styles.placeholder}> {"Procurar por algo"}</span>
-        <div className={Styles.keyboardEvent}>
+        <BiSearch className={styles.icon} />
+        <span className={styles.placeholder}> {"Procurar por algo"}</span>
+        <div className={styles.keyboardEvent}>
           {isMacos ? (
             <Flex h="100%" gap="2px" align="center">
               <PiCommandDuotone />
@@ -80,7 +80,7 @@ export const Spotlite = () => {
             <Flex borderBottom="2px solid #f1f1f1" p="16px 0" mt="20px">
               <InputGroup display="flex" alignItems="center">
                 <InputLeftElement h="100%" pointerEvents="none">
-                  <BiSearch className={Styles.icon} />
+                  <BiSearch className={styles.icon} />
                 </InputLeftElement>
                 <Input
                   onChange={handupdateSearchParam}
