@@ -1,12 +1,13 @@
-import { Flex } from "@chakra-ui/react";
+import getSeminars from "@/services/contentfull";
 import HomePage from "./home";
+import { contentfullResponseType } from "./home/sections/seminars/seminars.types";
 
-export default function Home() {
+export default async function Home() {
+  const response = await getSeminars();
+  console.log("Começou aqui:" + response);
   return (
     <main>
-      <Flex justify="center" w="100%">
-        <HomePage />
-      </Flex>
+      <HomePage data={response as unknown as contentfullResponseType[]} />
     </main>
   );
 }

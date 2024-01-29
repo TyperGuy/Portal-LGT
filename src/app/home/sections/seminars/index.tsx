@@ -1,12 +1,12 @@
-"use client";
+"use Client";
 
-import { Box, Skeleton, Button, Flex, Heading, Text } from "@chakra-ui/react";
-import { IoArrowForwardCircle } from "react-icons/io5";
-import { FcFinePrint } from "react-icons/fc";
-import { FcCollaboration } from "react-icons/fc";
+import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { BiChevronRight } from "react-icons/bi";
 import { FcDocument } from "react-icons/fc";
 import styles from "./styles.module.scss";
 import { SeminarCard } from "./seminar.card";
+import { seminarType, contentfullResponseType } from "./seminars.types";
+import { useHomePageContext } from "../..";
 
 const objectives = [
   {
@@ -16,9 +16,19 @@ const objectives = [
       " Documentos acessiveis a todos. Baixe de forma prática e simples a nova lei geral do trabalho.",
     ico: FcDocument,
   },
+  {
+    id: 1,
+    title: "Seminário mensal sobre enquadramento legal da LGT",
+    subtitle:
+      " Documentos acessiveis a todos. Baixe de forma prática e simples a nova lei geral do trabalho.",
+    ico: FcDocument,
+  },
 ];
 
-export const Seminars = () => {
+export const Seminars = async () => {
+  const data = useHomePageContext() as contentfullResponseType[];
+
+  console.log("Vamos ver a data no filho: ", data[0].fields);
   return (
     <Flex id="#seminarios" w="100%" justify="center" bg="#f0f3f7">
       <Flex w="90%" maxWidth="1200px" p="128px 0" gap="48px" flexDir="column">
@@ -31,8 +41,14 @@ export const Seminars = () => {
           </Text>
         </Flex>
         <Flex width="100%" gap="32px" className={styles.seminarMainContainer}>
-          {objectives.map((objective) => {
-            return <SeminarCard key={objective.id} />;
+          {data.map((seminar) => {
+            console.log("O que tem aqui ?" + data);
+            return (
+              <SeminarCard
+                key={seminar.fields.title}
+                seminar={seminar.fields}
+              />
+            );
           })}
         </Flex>
         {/*
@@ -45,6 +61,18 @@ export const Seminars = () => {
           <IoArrowForwardCircle fontSize="46px" cursor="pointer" />
         </Flex>
         */}
+        <Button
+          height="46px"
+          bg="#E2E8F0"
+          borderRadius="50px"
+          fontWeight="400"
+          fontSize=".9rem"
+          alignSelf="center"
+          rightIcon={<BiChevronRight fontSize="1.5em" />}
+          onClick={() => {}}
+        >
+          Ver todos
+        </Button>
       </Flex>
     </Flex>
   );

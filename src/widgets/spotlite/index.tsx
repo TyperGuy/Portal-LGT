@@ -38,10 +38,6 @@ export const Spotlite = () => {
     setsearchParam(searchParam + event.target.value);
   };
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyPressed);
-  }, [handleKeyPressed]);
-
   return (
     <>
       <Flex

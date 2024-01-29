@@ -15,25 +15,22 @@ import {
   ListItem,
   Divider,
   OrderedList,
+  UnorderedList,
 } from "@chakra-ui/react";
 import styles from "./styles.module.scss";
 import { FC } from "react";
-import { IoMdArrowRoundDown } from "react-icons/io";
+import { IoDocumentTextOutline } from "react-icons/io5";
 import Image from "next/image";
-
-const Objectives = [
-  "Proceder a apresentação da nova Lei e harmonizar a interpretação das inovações/medidas,reformas introduzidas na Lei n.° 12/23, de 27 de Dezembro - Lei Geral do Trabalho;",
-  "Destacar as principais inovações/medidas de reforma a introduzi-las;",
-  "Clarificar a ratio legis dos diferentes princípios e normas respeitantes, ao actual Regime da Relação Jurídico-Laboral;",
-  "Reforçar os conhecimentos no domínio das várias garantias dos trabalhadores e dos empregadores,sejam elas graciosas ou contenciosas;",
-  "Incentivar e promover o cumprimento das normas da Lei Geral do Trabalho.",
-];
+import { seminarType } from "./seminars.types";
+import Link from "next/link";
 
 interface PropsType {
-  key: number;
+  key: string;
+  seminar: seminarType;
 }
-export const SeminarCard: FC<PropsType> = ({ key }) => {
+export const SeminarCard: FC<PropsType> = ({ key, seminar }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Flex
@@ -56,9 +53,9 @@ export const SeminarCard: FC<PropsType> = ({ key }) => {
         <Skeleton isLoaded={true} borderRadius="8px">
           <Box
             className={styles.seminarCover}
-            bgImage="/seminarios/seminario.jpeg"
+            bgImage={seminar.cover.fields.file.url}
             w="100%"
-            h="500px"
+            h="400px"
             borderRadius="8px"
           ></Box>
         </Skeleton>
@@ -71,7 +68,7 @@ export const SeminarCard: FC<PropsType> = ({ key }) => {
             bgPosition="center"
             bgSize="cover"
             alignItems="center"
-            bgImage="/seminarios/hero.jpg"
+            bgImage={seminar.cover.fields.file.url}
             overflow="hide"
             borderBottom="4px solid #4299E1"
           >
@@ -91,45 +88,51 @@ export const SeminarCard: FC<PropsType> = ({ key }) => {
             color="#333"
             pt="20px"
           >
-            <Heading>Formação para jornalistas</Heading>
+            <Heading>{seminar.title}</Heading>
             <Flex h="60px" bg="#fff" mt="16px" borderRadius="12px" gap="16px">
               <Flex
                 h="40px"
                 gap="8px"
                 align="center"
-                borderRadius="50px"
+                borderRadius="6px"
                 bg="#f0f3f7"
                 p="8px"
               >
                 <Image
-                  width={17}
-                  height={17}
+                  width={16}
+                  height={16}
                   src="/icon/calendar-tick.svg"
                   alt=""
                 />
-                <Text fontSize=".9em">29 - Janeiro - 2024</Text>
+                <Text fontSize=".8em">
+                  {new Date(seminar.date).getDate() +
+                    "-" +
+                    new Date(seminar.date).getMonth() +
+                    "-" +
+                    new Date(seminar.date).getFullYear()}
+                </Text>
               </Flex>
               <Flex
                 h="40px"
                 gap="8px"
                 align="center"
-                borderRadius="50px"
+                borderRadius="6px"
                 bg="#f0f3f7"
                 p="8px"
               >
-                <Image width={17} height={17} src="/icon/timer.svg" alt="" />
-                <Text fontSize=".9em">09h00</Text>
+                <Image width={16} height={16} src="/icon/timer.svg" alt="" />
+                <Text fontSize=".8em">{seminar.time}</Text>
               </Flex>
               <Flex
                 h="40px"
                 gap="8px"
                 align="center"
-                borderRadius="50px"
+                borderRadius="6px"
                 bg="#f0f3f7"
                 p="8px"
               >
-                <Image width={17} height={17} src="/icon/location.svg" alt="" />
-                <Text fontSize=".9em">Ed. MAPTSS, Piso 3</Text>
+                <Image width={16} height={16} src="/icon/location.svg" alt="" />
+                <Text fontSize=".8em">{seminar.address}</Text>
               </Flex>
             </Flex>
             <Heading size="md" mt="16px">
@@ -137,34 +140,49 @@ export const SeminarCard: FC<PropsType> = ({ key }) => {
             </Heading>
             <Flex color="#333" flexDir="column" gap="10px" mt="10px">
               <OrderedList spacing={3}>
-                {Objectives.map((objective) => {
+                {seminar.objectives.map((objective) => {
                   return <ListItem key={objective}>{objective}</ListItem>;
                 })}
               </OrderedList>
             </Flex>
             <Divider m="32px 0" />
             <Heading size="md">Publico alvo</Heading>
-            <Text>Jornalistas de órgãos públicos e privados</Text>
+            <Flex color="#333" flexDir="column" gap="10px" mt="10px">
+              <UnorderedList spacing={3}>
+                {seminar.targetAudience.map((target) => {
+                  return <ListItem key={target}>{target}</ListItem>;
+                })}
+              </UnorderedList>
+            </Flex>
             <Flex w="100%" justify="flex-end">
-              <Flex
-                height="46px"
-                width="180px"
-                border="2px solid #fff"
-                align="center"
-                borderRadius="50px"
-                fontWeight="400"
-                fontSize=".9rem"
-                p="8px"
-                cursor="pointer"
-                bg="#333"
-                mt="64px"
+              <Link
+                target="blank"
+                href={
+                  seminar.program != undefined
+                    ? seminar.program.fields.file.url
+                    : ""
+                }
               >
-                <IoMdArrowRoundDown color="#fff" fontSize="25px" />
-                <Text ml="8px" justifySelf="center" color="#fff">
-                  {" "}
-                  Baixar programa
-                </Text>
-              </Flex>
+                {" "}
+                <Flex
+                  height="46px"
+                  border="2px solid #fff"
+                  align="center"
+                  borderRadius="50px"
+                  fontWeight="400"
+                  fontSize=".9rem"
+                  p="8px 12px"
+                  cursor="pointer"
+                  bg="#333"
+                  mt="64px"
+                  justify="center"
+                >
+                  <IoDocumentTextOutline color="#fff" fontSize="16px" />
+                  <Text ml="8px" justifySelf="center" color="#fff">
+                    Ver programa
+                  </Text>
+                </Flex>
+              </Link>
             </Flex>
           </ModalBody>
 

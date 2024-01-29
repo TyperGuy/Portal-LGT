@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { IoArrowForwardCircle } from "react-icons/io5";
 import { FcFinePrint } from "react-icons/fc";

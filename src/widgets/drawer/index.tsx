@@ -1,4 +1,3 @@
-"use-client";
 import { SlMenu } from "react-icons/sl";
 import {
   Box,
@@ -30,11 +29,6 @@ import styles from "./styles.module.scss";
 
 export const DrawerWidget = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [category, setCategory] = useState("Tudo");
-  const [isMacos, setIsmac] = useState(false);
-  const [searchParam, setsearchParam] = useState("");
-
-  useEffect(() => {}, []);
 
   return (
     <>

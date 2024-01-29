@@ -1,11 +1,7 @@
-"use client";
-
 import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import styles from "./styles.module.scss";
 import { MdArrowForward } from "react-icons/md";
-import { FaPlay } from "react-icons/fa6";
 import { MdPlayCircle } from "react-icons/md";
-import Link from "next/link";
 
 export const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
@@ -57,7 +53,7 @@ export const HeroSection = () => {
             <MdArrowForward />
           </Flex>
           <Heading textAlign="center" size="3xl" color="#fff" maxWidth="700px">
-            Portal da Lei Geral do Trabalho de Angola
+            Lei Geral do Trabalho
           </Heading>
           <Text textAlign="center" color="#fff" maxWidth="500px">
             Explore o Portal da Lei Geral do Trabalho - Seu guia abrangente para

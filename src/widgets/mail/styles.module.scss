@@ -49,17 +49,6 @@ display: none;
 .headerImag{
   width: 100%;
 }
-.report{
-  width:100%;
-  border-radius: 12px;
-  min-height: 180px;
-  padding: 4px;
-  background: linear-gradient(90deg, #FF2A30, #0038AD );
-  transition:all ease-in-out .3s;
-  &:hover{
-   transform: scale(1.02),
-  }
-}
 
 .reportInnerContainer{
   @media only screen and (max-width:950px){

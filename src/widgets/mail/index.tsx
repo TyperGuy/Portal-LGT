@@ -1,5 +1,3 @@
-"use-client";
-import { categoriesFilters as categories } from "@/constants/navMenu";
 import { osfunction } from "@/utils/osDetection";
 import {
   Box,
@@ -22,33 +20,25 @@ import {
   Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 
 export const Mail = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [category, setCategory] = useState("Tudo");
-  const [isMacos, setIsmac] = useState(false);
-  const [searchParam, setsearchParam] = useState("");
-  useEffect(() => {
-    setIsmac(osfunction());
-  }, []);
-
-  const handleKeyPressed = useCallback((event: KeyboardEvent) => {}, []);
-  const handupdateSearchParam = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setsearchParam(searchParam + event.target.value);
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyPressed);
-  }, [handleKeyPressed]);
 
   return (
     <>
-      <Flex className={styles.report}>
+      <Flex
+        width="100%"
+        borderRadius=" 12px"
+        height=" 180px"
+        padding="4px"
+        bgGradient=" linear-gradient(90deg, #FF2A30, #0038AD )"
+        transition="all ease-in-out .3s"
+        _hover={{
+          transform: "scale(1.02)",
+        }}
+      >
         <Flex
           h="100%"
           w="100%"
